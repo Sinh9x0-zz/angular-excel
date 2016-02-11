@@ -10,8 +10,20 @@ module.exports = (function() {
 		   		var workbook = excel.readFile(files.file.path);
 		   		
 		   		for (sheet in workbook.Sheets){
-		   			console.log(workbook.Sheets[sheet] )
 		   			workbook.Sheets[sheet] = excel.utils.sheet_to_json(workbook.Sheets[sheet], {header: 1});
+		   		}
+
+		   		for (sheet in workbook.Sheets){
+		   			for (var i = 1; i < workbook.Sheets[sheet].length; i++){
+		   				var maxLength = workbook.Sheets[sheet][0].length
+		   				if (workbook.Sheets[sheet][i].length > maxLength)
+		   					maxLength = workbook.Sheets[sheet][i].length;
+		   			}
+		   			for (var i = 0; i < workbook.Sheets[sheet].length; i++){
+		   				while (workbook.Sheets[sheet][i].length != maxLength){
+		   					workbook.Sheets[sheet][i].push(null)
+		   				}
+		   			}
 		   		}
 
 		   		var myExcel = {

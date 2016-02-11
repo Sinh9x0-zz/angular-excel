@@ -5,6 +5,7 @@
     "body-parser": "latest",
     "express": "latest",
     "formidable": "^1.0.17",
-    "mongoose": "latest"
+    "mongoose": "latest",
+    "xlsx": "^0.8.0"
   }
 }

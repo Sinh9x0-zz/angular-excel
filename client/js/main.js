@@ -2,7 +2,6 @@ app.controller('mainController', function(fileFactory, $scope) {
 	var _this = this;
     $scope.uploadFile = function(event){
         fileFactory.sendFile(event.target.files[0], function(data){
-        	console.log(data.content[data.sheets[0]]);
         	_this.data = data.content;
         	_this.sheets = data.sheets;
         })
