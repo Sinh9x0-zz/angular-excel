@@ -1,9 +1,19 @@
 <h3>Excel Reader</h3>
+<p>To get started, choose an Excel file (xlsx, xls) to parse</p>
+<input type="file" accept=".xlsx" on-change="uploadFile"> 
 
-<input type="file" accept=".xlsx" on-change="uploadFile"> <br>
+<br>
+<div class="selector row col-md-4">
+	<select class="form-control" ng-model='mainCtrl.current'>
+		<option value=''>Select a Sheet</option>
+	    <option ng-repeat="sheet in mainCtrl.sheets" value="{{$index}}"><span ng-bind='sheet'></span>{{sheet}}</option>
+	</select>
+</div>
 
-<select>
-	<option value=''>Select a Sheet</option>
-    <option ng-repeat="sheet in mainCtrl.sheets" value="{{sheet}}"><span ng-bind='sheet'></span>{{sheet}}</option>
-</select>
-{{mainCtrl.data}}
+<div class="sheet">
+    <table class="table table-bordered">	
+        <tr ng-repeat="row in mainCtrl.data[mainCtrl.sheets[mainCtrl.current]]">
+            <td ng-repeat="col in row track by $index" ng-bind="col"></td>
+        </tr>
+    </table>
+</div>
