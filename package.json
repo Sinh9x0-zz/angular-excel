@@ -1,0 +1,9 @@
+{
+  "name": "angular_excel",
+  "description": "application to upload excel sheets for client-side viewing",
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "latest",
+    "mongoose": "latest"
+  }
+}
