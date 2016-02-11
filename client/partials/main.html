@@ -1,12 +1,9 @@
 <h3>Excel Reader</h3>
 
-<input type="file" on-change="uploadFile">
-
-<h4>Sheet Name</h4>
+<input type="file" accept=".xlsx" on-change="uploadFile"> <br>
 
 <select>
-	<option>Sheet1</option>
-	<option>Sheet2</option>
-	<option>Sheet3</option>
-	<option>Sheet4</option>
+	<option value=''>Select a Sheet</option>
+    <option ng-repeat="sheet in mainCtrl.sheets" value="{{sheet}}"><span ng-bind='sheet'></span>{{sheet}}</option>
 </select>
+{{mainCtrl.data}}
