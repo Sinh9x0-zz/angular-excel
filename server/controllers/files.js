@@ -63,7 +63,9 @@ module.exports = (function() {
 							newRow.save(function(err, rowData){
 								Sheet.update({_id: rowData._Sheet}, {$push: {rows: rowData.id}}, function(err, res){
 									Workbook.update({_id: workbookID}, {$push: {sheets: sheetData.id}}, function(err, res){
-										console.log('Excel file successfully stored in database')
+										if(err){
+											console.log(err);
+										}
 									})
 								})
 							})
@@ -78,6 +80,18 @@ module.exports = (function() {
 			   		res.json(myExcel);
 			   	}
 			});
+		}, 
+		getAll: function(req, res){
+			/* returns json object with all workbooks, sheets, and rows */
+			Workbook.find({}).populate('sheets').exec(function(err, workbooks){
+				if (err) {
+					res.json(err)
+				} else {
+					Row.populate(workbooks, 'sheets.rows',function(err, results){
+						res.json(results);
+					})
+				}
+			})
 		}
 	}
 })();

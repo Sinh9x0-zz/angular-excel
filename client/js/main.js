@@ -7,6 +7,11 @@ app.controller('mainController', function(fileFactory, $scope) {
         })
     };
 
+    fileFactory.getAll(function(dbData){
+    	console.log(dbData)
+    	_this.dbData = dbData;
+    })
+
 });
 
 app.factory('fileFactory', function($http){
@@ -21,6 +26,12 @@ app.factory('fileFactory', function($http){
         }).success(function(data){
 			callback(data);
 		});
+	}
+
+	factory.getAll = function(callback){
+		$http.get('/getAll').success(function(dbData){{
+			callback(dbData);
+		}})
 	}
 
 	return factory;

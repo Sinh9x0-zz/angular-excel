@@ -8,6 +8,6 @@ app.config(function ($routeProvider) {
         controllerAs: 'mainCtrl'
     })
     .otherwise({
-        redirectTo: '/dashboard'
+        redirectTo: '/'
     });
 });
